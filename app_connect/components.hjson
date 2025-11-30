@@ -1,0 +1,122 @@
+{
+	components: [
+		{
+		  type: 'dmx-publisher',
+		  selector : 'dmx-publisher, [is=dmx-publisher]',
+		  groupTitle : 'Chandiman',
+		  groupIcon : 'fas fa-archive',
+		  title : 'Publisher: @@id@@',
+		  icon : 'fa fa-lg fa-upload',
+		  state : 'opened',
+		  anyParent: true,
+		  template: '<dmx-publisher id="@@id@@"></dmx-publisher>',
+		  baseName: 'publisher',
+		  help: 'Publisher',
+		  dataScheme: [
+
+		  ],
+		  outputType: 'object',
+		  dataPick: true,
+		  dataPickObject: true,
+		  properties : [
+  			{
+  				group: 'Publisher Properties',
+  				variables: [
+  					{ name: 'publisherId', attribute: 'id', title: 'ID', type: 'text', defaultValue: '', required: true },
+  				]
+  			}
+		  ],
+			actionsScheme: [
+		    {
+				addTitle: 'Trigger',
+				title : 'Trigger',
+				name : 'trigger',
+				icon : 'fas fa-lg fa-exchange',
+				state : 'opened',
+				help: 'Trigger',
+				properties : [
+					{
+						group: 'Trigger Properties',
+						optionsInObject: true,
+						variables: [
+							{
+								name: 'name', optionName: 'name', title: 'Event Name', type: 'text',
+								dataBindings: true, defaultValue: '',
+								help: 'Enter the event name to trigger'
+							},
+						]
+					}
+				]
+		    },
+		  ],
+	    children: [],
+	    allowed_children: {},
+	    copyFiles: [
+	    	{src: 'includes/dmx-publisher.js', dst: 'js/dmx-publisher.js'},
+	    ],
+	    linkFiles: [
+	    	{src: 'js/dmx-publisher.js', type: 'js', defer: true},
+	    ],
+	    cssOrder: [],
+	    jsOrder: []
+	  },
+	  {
+		type: 'dmx-subscriber',
+		selector : 'dmx-subscriber, [is=dmx-subscriber]',
+		groupTitle : 'Chandiman',
+		groupIcon : 'fas fa-archive',
+		title : 'subscriber: @@id@@',
+		icon : 'fa fa-lg fa-download',
+		state : 'opened',
+		anyParent: true,
+		template: '<dmx-subscriber id="@@id@@"></dmx-subscriber>',
+		baseName: 'subscriber',
+		help: 'Subscriber',
+		dataScheme: [],
+		outputType: 'object',
+		dataPick: true,
+		dataPickObject: true,
+		properties : [
+  			{
+  				group: 'Subscriber Properties',
+  				variables: [
+  					{ name: 'subscriberId', attribute: 'id', title: 'ID', type: 'text', defaultValue: '', required: true },
+					{ name: 'subscriberEventName', attribute: 'eventname', title: 'Event Name', type: 'text', defaultValue: 'event', required: true },
+  				]
+  			}
+		  ],
+		actionsScheme: [],
+	    children: [],
+	    allowed_children: {},
+	    copyFiles: [
+	    	{src: 'includes/dmx-subscriber.js', dst: 'js/dmx-subscriber.js'},
+	    ],
+	    linkFiles: [
+	    	{src: 'js/dmx-subscriber.js', type: 'js', defer: true},
+	    ],
+	    cssOrder: [],
+	    jsOrder: []
+	  }
+	],
+	attributes: [],
+	events: [
+		{
+			name: 'dmx-subscriber-event_triggered', attributeStartsWith: 'dmx-on', attribute: 'eventtriggered', title: 'Event Triggered', type: 'boolean',
+			display: 'fieldset', icon: 'fa fa-lg fa-chevron-right',
+			groupTitle: 'Publisher', groupIcon: 'fa fa-lg fa-archive comp-general',
+			defaultValue: true, show: ['event_triggered_action'], noChangeOnHide: true, groupEnabler: true,
+			children: [
+				{
+					name: 'event_triggered_action', attributeStartsWith: 'dmx-on', attribute: 'eventtriggered', isValue: true, actionsPicker: true,
+					title: 'Action:', type: 'text', help: 'Choose the action to execute.', defaultValue: '', initDisplay: 'none', required: true
+				}
+			],
+			allowedOn: {
+				'dmx-subscriber' : true
+			}
+		},
+	],
+	static_events: [
+
+	]
+}

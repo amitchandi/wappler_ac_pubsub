@@ -1,0 +1,15 @@
+{
+  "name": "@wappler-chandiman/pubsub",
+  "version": "1.0.0",
+  "description": "A set of publisher/subscriber App Connect components for Wappler",
+  "keywords": [
+    "wappler-extension",
+    "app-connect",
+    "pub/sub"
+  ],
+  "author": {
+    "name": "Amit Chandi",
+    "url": "https://github.com/amitchandi"
+  },
+  "license": "MIT"
+}
