@@ -1,6 +1,6 @@
 {
   "name": "wappler-pubsub",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A set of publisher/subscriber App Connect components for Wappler",
   "keywords": [
     "wappler-extension",
