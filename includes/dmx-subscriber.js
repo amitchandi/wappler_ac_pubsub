@@ -24,7 +24,6 @@ dmx.Component('subscriber', {
         this.set('eventname', this.props.eventname);
         this.handler = () => this._eventtriggered();
         document.addEventListener(this.props.eventname, this.handler);
-        this.dispatchEvent("eventtriggered");
     },
 
     destroy: function () {
